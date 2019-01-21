@@ -1,57 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Pokemon Game</title>
-    <link rel="shortcut icon" href="assets/images/favicon.ico">
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
-      integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="assets/css/style.css">
-  </head>
-  <body>
-    <div class="container">
-        <div class="jumbotron">
-          <br><br><br><br><br>
-            
-            
-          </div>
-          <h5 id="firststep">Choose Your Pokemon</h5>
-      <div class="row beginning" id="initial"></div>
 
-      <div class="row">
-        <div class="col-2" id="your-character"><h5 >Your Pokemon</h5></div>
-      </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Pokemon Game</title>
+  <link rel="shortcut icon" href="assets/images/favicon.ico">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+    crossorigin="anonymous" />
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
 
-      <div class="row">
-        <div class="col-6"><h5>Pokemons Available to Fight</h5>
-        <div class="row enemy" id="enemies-available"></div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col" id="fight-section">
-          <h5>Fight Section</h5>
-          <button type="button" class="btn btn-primary btn-sm" id="attack-button">Attack</button>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-3" id="defender"><h5>Defender</h5></div>
-      </div>
-      <br><br>
-      <div class="jumbotron h-0">        
+<body>
+  <div class="container">
+    <div class="jumbotron">
+      <br><br><br><br><br>
+
+
+    </div>
+    <h5 id="firststep">Choose Your Pokemon</h5>
+    <div class="row justify-content-start" id="initial"></div>
+
+
+    <h5>Your Pokemon</h5>
+    <div class="row justify-content-start" id="your-character">
+
+    </div>
+
+
+
+    <h5>Pokemons Available to Fight</h5>
+    <div class="row justify-content-start" id="enemies-available">
+
+    </div>
+    <div class="row">
+      <div class="col" id="fight-section">
+        <h5>Fight Section</h5>
+        <button type="button" class="btn btn-primary btn-sm" id="attack-button">Attack</button>
       </div>
     </div>
-    
 
-    <script
-      type="text/javascript"
-      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"
-    ></script>
-    <script src="assets/javascript/game.js"></script>
-  </body>
+    <h5>Defender</h5>
+    <div class="row justify-content-start" id="defender">
+
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <h6 id="info-character"></h6>
+        <h6 id="info-enemy"></h6>
+      </div>
+
+    </div>
+
+    <br><br>
+    <div class="jumbotron h-0">
+    </div>
+  </div>
+
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="assets/javascript/game.js"></script>
+</body>
+
 </html>

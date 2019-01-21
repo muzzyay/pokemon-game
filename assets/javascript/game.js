@@ -36,7 +36,7 @@ $(document).ready(function() {
     pokemonBox.prop("healthpower", element.hp);
     pokemonBox.prop("attack", element.att);
     pokemonBox.prop("counterattack", element.counteratt);
-    pokemonBox.addClass("col border border-dark text-center pokedex");
+    pokemonBox.addClass("col-sm-6 col-lg-2 border border-dark rounded text-center pokedex");
     var pokemonName = $("<div>");
     pokemonName = element.name;
     var pokemonImage = $("<div>");
@@ -76,14 +76,14 @@ var restartBut = $('<a href="index.html" class="btn btn-primary btn-sm active" r
       $(this).removeClass("pokedex");
       
       $(this).appendTo("#your-character");
-      $("#initial").appendTo("#enemies-available");
+      $("#initial .pokedex").appendTo("#enemies-available");
       $("#firststep").empty();
 
       chosenCharacterName = $(this).prop("name");      
       chosenCharacterAttack = $(this).prop("attack");
-      console.log(chosenCharacterAttack);
+      
       chosenCharacterHealth = $(this).prop("healthpower");
-      console.log(chosenCharacterHealth);
+     
 
     }else if(!enemyChosen){
       enemyChosen = true;
@@ -91,7 +91,7 @@ var restartBut = $('<a href="index.html" class="btn btn-primary btn-sm active" r
       $(this).appendTo("#defender");
       chosenEnemyName = $(this).prop("name");
       chosenEnemyCounterAttack = $(this).prop("counterattack");
-      console.log(chosenCharacterHealth);
+  
       chosenEnemyHealth = $(this).prop("healthpower");
     }
   })
@@ -114,31 +114,36 @@ var restartBut = $('<a href="index.html" class="btn btn-primary btn-sm active" r
       infoCharacter.text("You attacked "+chosenEnemyName+" for "+finalAttack+" damage.");
       infoEnemy.text(chosenEnemyName+" attacked you back for "+chosenEnemyCounterAttack+" damage.");
 
-      $("#defender").append(infoCharacter);
-      $("#defender").append(infoEnemy);
+      $("#info-character").append(infoCharacter);
+      $("#info-enemy").append(infoEnemy);
 
       if(chosenEnemyHealth<1){
         enemyChosen = false;
         enemyDefeated++;
         chosenEnemyHealth = 0;
+        $("#defender").empty();
         infoCharacter.text("You have defeated "+chosenEnemyName+", you can choose to fight another pokemon.");
         infoEnemy.empty();
-        $("#defender .pokedex").empty();
       }
 
-      if(chosenCharacterHealth<1){
+
+      if(chosenCharacterHealth<1 && enemyDefeated===3){
+        infoCharacter.text("Nobody Wins. GAME OVER!!! ");
+        infoEnemy.empty();
+        $("#info-character").prepend(restartBut);
+
+
+      }else if(chosenCharacterHealth<1){
         
         infoCharacter.text("You have been defeated. GAME OVER!!! ");
         infoEnemy.empty();
-        $("#defender").append(restartBut);
+        $("#info-character").prepend(restartBut);
         
 
-      }
-
-      if(enemyDefeated === 3){
+      }else if(enemyDefeated === 3){
 
         infoCharacter.text("You WON. GAME OVER!!! ");
-        $("#defender").append(restartBut);
+        $("#info-character").prepend(restartBut);
         
 
       }
