@@ -152,4 +152,17 @@ var restartBut = $('<a href="index.html" class="btn btn-primary btn-sm active" r
 
   })
   
+
+  var audioElement = document.createElement("audio");
+  audioElement.setAttribute("src", "assets/pokemon-theme-song-music-video.mp3");
+
+  // Theme Button
+  $(".theme-button").on("click", function() {
+    audioElement.play();
+  });
+  $(".pause-button").on("click", function() {
+    audioElement.pause();
+  });
+
+
 });
