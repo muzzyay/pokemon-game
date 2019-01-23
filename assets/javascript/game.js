@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
   var pokemon = [
     {
       name: "Bulbasaur",
@@ -30,7 +30,7 @@ $(document).ready(function() {
     }
   ];
 
-  pokemon.forEach(function(element) {
+  pokemon.forEach(function (element) {
     var pokemonBox = $("<div>");
     pokemonBox.prop("name", element.name);
     pokemonBox.prop("healthpower", element.hp);
@@ -50,117 +50,106 @@ $(document).ready(function() {
     pokemonBox.append(pokemonHealth);
   });
 
-var characterChosen = false;
-var enemyChosen = false;
-var chosenCharacterName = "";
-var chosenCharacterHealth = 0;
-var chosenCharacterAttack = 0;
-var chosenEnemyName = "";
-var chosenEnemyHealth =0;
-var chosenEnemyCounterAttack = 0;
-var finalAttack = 0;
-var enemyDefeated = 0;
-var infoCharacter = $("<div>");
-var infoEnemy = $("<div>");
-var restartBut = $('<a href="index.html" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Restart</a>');
+  var characterChosen = false;
+  var enemyChosen = false;
+  var chosenCharacterHealth = 0;
+  var chosenCharacterAttack = 0;
+  var chosenEnemyName = "";
+  var chosenEnemyHealth = 0;
+  var chosenEnemyCounterAttack = 0;
+  var finalAttack = 0;
+  var enemyDefeated = 0;
+  var infoCharacter = $("<div>");
+  var infoEnemy = $("<div>");
+  var restartBut = $('<a href="index.html" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Restart</a>');
 
-
-
-  
-  $(".container").on("click",".pokedex", function(){
-
-    
-
-    if(!characterChosen){
+  $(".container").on("click", ".pokedex", function () {
+    if (!characterChosen) {
       characterChosen = true;
       $(this).removeClass("pokedex");
-      
       $(this).appendTo("#your-character");
       $("#initial .pokedex").appendTo("#enemies-available");
       $("#firststep").empty();
 
-      chosenCharacterName = $(this).prop("name");      
+      chosenCharacterName = $(this).prop("name");
       chosenCharacterAttack = $(this).prop("attack");
-      
       chosenCharacterHealth = $(this).prop("healthpower");
-     
 
-    }else if(!enemyChosen){
+    } else if (!enemyChosen) {
       enemyChosen = true;
       infoCharacter.empty();
       $(this).appendTo("#defender");
       chosenEnemyName = $(this).prop("name");
       chosenEnemyCounterAttack = $(this).prop("counterattack");
-  
       chosenEnemyHealth = $(this).prop("healthpower");
     }
   })
 
-  $("#attack-button").on("click", function(){
+  $("#attack-button").on("click", function () {
 
-    if(!characterChosen || !enemyChosen){
+    if (!characterChosen || !enemyChosen) {
       return;
     }
 
-    if(chosenCharacterHealth > 0 && chosenEnemyHealth > 0){
-      
+    if (chosenCharacterHealth > 0 && chosenEnemyHealth > 0) {
+
       finalAttack = finalAttack + chosenCharacterAttack;
       chosenEnemyHealth = chosenEnemyHealth - finalAttack;
       chosenCharacterHealth = chosenCharacterHealth - chosenEnemyCounterAttack;
-      
-      $("#your-character .health-inner").text("HP: "+chosenCharacterHealth);
-      $("#defender .health-inner").text("HP: "+chosenEnemyHealth);
 
-      infoCharacter.text("You attacked "+chosenEnemyName+" for "+finalAttack+" damage.");
-      infoEnemy.text(chosenEnemyName+" attacked you back for "+chosenEnemyCounterAttack+" damage.");
+      $("#your-character .health-inner").text("HP: " + chosenCharacterHealth);
+      $("#defender .health-inner").text("HP: " + chosenEnemyHealth);
+
+      infoCharacter.text("You attacked " + chosenEnemyName + " for " + finalAttack + " damage.");
+      infoEnemy.text(chosenEnemyName + " attacked you back for " + chosenEnemyCounterAttack + " damage.");
 
       $("#info-character").append(infoCharacter);
       $("#info-enemy").append(infoEnemy);
 
-      if(chosenEnemyHealth<1){
+      if (chosenEnemyHealth < 1) {
         enemyChosen = false;
         enemyDefeated++;
         chosenEnemyHealth = 0;
         $("#defender").empty();
-        infoCharacter.text("You have defeated "+chosenEnemyName+", you can choose to fight another pokemon.");
+        infoCharacter.text("You have defeated " + chosenEnemyName + ", you can choose to fight another pokemon.");
         infoEnemy.empty();
       }
 
 
-      if(chosenCharacterHealth<1 && enemyDefeated===3){
+      if (chosenCharacterHealth < 1 && enemyDefeated === 3) {
         infoCharacter.text("Nobody Wins. GAME OVER!!! ");
         infoEnemy.empty();
         $("#info-character").prepend(restartBut);
 
 
-      }else if(chosenCharacterHealth<1){
-        
+      } else if (chosenCharacterHealth < 1) {
+
         infoCharacter.text("You have been defeated. GAME OVER!!! ");
         infoEnemy.empty();
         $("#info-character").prepend(restartBut);
-        
 
-      }else if(enemyDefeated === 3){
+
+      } else if (enemyDefeated === 3) {
 
         infoCharacter.text("You WON. GAME OVER!!! ");
         $("#info-character").prepend(restartBut);
-        
+
 
       }
 
     }
 
   })
-  
+
 
   var audioElement = document.createElement("audio");
   audioElement.setAttribute("src", "assets/pokemon-theme-song-music-video.mp3");
 
   // Theme Button
-  $(".theme-button").on("click", function() {
+  $(".theme-button").on("click", function () {
     audioElement.play();
   });
-  $(".pause-button").on("click", function() {
+  $(".pause-button").on("click", function () {
     audioElement.pause();
   });
 
